@@ -4,9 +4,6 @@ package plugin
 import (
 	"context"
 	"fmt"
-	"github.com/getkin/kin-openapi/openapi3"
-	"github.com/getkin/kin-openapi/openapi3filter"
-	"github.com/getkin/kin-openapi/routers/gorillamux"
 	"net/http"
 	"os"
 	"text/template"
@@ -51,18 +48,6 @@ func New(ctx context.Context, next http.Handler, config *Config, name string) (h
 }
 
 func (a *Demo) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
-	ctx := context.Background()
-	loader := &openapi3.Loader{Context: ctx, IsExternalRefsAllowed: true}
-	doc, _ := loader.LoadFromFile("plugins-local/src/github.com/traefik/plugin/petstore-v1.yaml")
-	router, _ := gorillamux.NewRouter(doc)
-	route, pathParams, _ := router.FindRoute(req)
-	// Validate request
-	requestValidationInput := &openapi3filter.RequestValidationInput{
-		Request:    req,
-		PathParams: pathParams,
-		Route:      route,
-	}
-	_ := openapi3filter.ValidateRequest(ctx, requestValidationInput)
 
 	os.Stdout.WriteString("hello sdfsdfs")
 	rw.Write([]byte("hello"))
