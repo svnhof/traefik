@@ -1,0 +1,30 @@
+http:
+  services:
+    # Error pages
+    petshop-v1:
+      loadBalancer:
+        servers:
+          - url: "https://jkltofkfmc.execute-api.eu-central-1.amazonaws.com/dev"
+    petshop-v2:
+      loadBalancer:
+        servers:
+          - url: "https://huk.de:443"
+
+  routers:
+    petshop-v1:
+      rule: "Path(`/pets/api/v1`)"
+      service: petshop-v1
+      middlewares:
+        - my-plugin
+    petshop-v2:
+      rule: "Path(`/pets/api/v2`)"
+      service: petshop-v2
+      middlewares:
+        - my-plugin
+
+  middlewares:
+    my-plugin:
+      plugin:
+        example:
+          headers:
+            Foo: Bar

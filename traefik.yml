@@ -1,0 +1,22 @@
+api:
+  dashboard: true
+  insecure: true
+
+entryPoints:
+  http:
+    address: ":80"                            # Create the HTTP entrypoint on port 80
+  https:
+    address: ":443"                           # Create the HTTPS entrypoint on port 443
+
+providers:
+  file:
+    filename: "/etc/traefik/config.yml"       # Link to the dynamic configuration
+    watch: true    # Watch for modifications
+
+log:
+  level: DEBUG
+
+experimental:
+  localPlugins:
+    example:
+      moduleName: github.com/traefik/plugin
