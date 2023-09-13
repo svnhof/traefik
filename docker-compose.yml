@@ -14,5 +14,5 @@ services:
     volumes:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
-      - /Users/sven/IdeaProjects/traefik/untitled/traefik-config/:/etc/traefik/
-      - /Users/sven/IdeaProjects/traefik/untitled/plugins-local:/plugins-local/
+      - /Users/sven/IdeaProjects/traefik/traefik-config/:/etc/traefik/
+      - /Users/sven/IdeaProjects/traefik/plugins-local:/plugins-local/

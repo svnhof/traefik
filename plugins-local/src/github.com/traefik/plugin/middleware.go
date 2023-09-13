@@ -4,6 +4,7 @@ package plugin
 import (
 	"context"
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"text/template"
@@ -49,6 +50,6 @@ func New(ctx context.Context, next http.Handler, config *Config, name string) (h
 
 func (a *Demo) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 
-	os.Stdout.WriteString("hello sdfsdfs")
+	log.Println("leck mich ")
 	rw.Write([]byte("hello"))
 }
