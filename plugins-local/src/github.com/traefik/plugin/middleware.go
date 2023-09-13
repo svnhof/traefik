@@ -3,7 +3,6 @@ package plugin
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -12,36 +11,29 @@ import (
 
 // Config the plugin configuration.
 type Config struct {
-	Headers map[string]string `json:"headers,omitempty"`
+	Apidocs map[string]string `json:"apidocs,omitempty"`
 }
 
 // CreateConfig creates the default plugin configuration.
 func CreateConfig() *Config {
 	os.Stdout.WriteString("hello create config")
 	return &Config{
-		Headers: make(map[string]string),
+		Apidocs: make(map[string]string),
 	}
 }
 
 // Demo a Demo plugin.
 type Demo struct {
 	next     http.Handler
-	headers  map[string]string
+	apidocs  map[string]string
 	name     string
 	template *template.Template
 }
 
 // New created a new Demo plugin.
 func New(ctx context.Context, next http.Handler, config *Config, name string) (http.Handler, error) {
-	os.Stdout.WriteString("hello constructor")
-
-	if len(config.Headers) == 0 {
-		os.Stdout.WriteString("config headers 0")
-		return nil, fmt.Errorf("headers cannot be empty")
-	}
-
 	return &Demo{
-		headers:  config.Headers,
+		apidocs:  config.Apidocs,
 		next:     next,
 		name:     name,
 		template: template.New("demo").Delims("[[", "]]"),

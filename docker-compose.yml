@@ -16,3 +16,4 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /Users/sven/IdeaProjects/traefik/traefik-config/:/etc/traefik/
       - /Users/sven/IdeaProjects/traefik/plugins-local:/plugins-local/
+      - /Users/sven/IdeaProjects/traefik/apidocs:/apidocs

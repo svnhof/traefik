@@ -26,5 +26,6 @@ http:
     my-plugin:
       plugin:
         example:
-          headers:
-            Foo: Bar
+          apidocs:
+            /pets/api/v1 : /apidocs/petstore-v1.yaml
+            /pets/api/v2 : /apidocs/petstore-v2.yaml
